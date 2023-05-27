@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	Box,
 	Button,
@@ -15,13 +15,12 @@ import {
 	Alert,
 	AlertIcon,
 } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
 import { PasswordField } from '../components/PasswordField';
-import { OAuthButtonGroup } from '../components/OAuthButtonGroup';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { loginUser } from '../features/auth/loginAction';
+import { registerUser } from '../features/auth/signupAction';
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-const Login = () => {
+const SignUp = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { loading, userInfo, error, success } = useSelector((state) => state.auth);
@@ -35,9 +34,9 @@ const Login = () => {
 			console.log('Fields can not be empty!');
 		} else {
 			dispatch(
-				loginUser({
-					employeeEmail: email,
-					employeePassword: password,
+				registerUser({
+					email: email,
+					password: password,
 				})
 			);
 		}
@@ -53,28 +52,16 @@ const Login = () => {
 						<Stack
 							spacing={{ base: '2', md: '3' }}
 							textAlign='center'>
-							{error && (
-								<Alert status='error'>
-									<AlertIcon />
-									Somthing went wrong
-								</Alert>
-							)}
-							{success && (
-								<Alert status='success'>
-									<AlertIcon />
-									Login sucessful
-								</Alert>
-							)}
-							<Heading size={{ base: 'xs', md: 'sm' }}>Log in to your account</Heading>
+							<Heading size={{ base: 'xs', md: 'sm' }}>SignUp your account</Heading>
 							<HStack
 								spacing='1'
 								justify='center'>
-								<Text color='muted'>Don't have an account?</Text>
+								<Text color='muted'>Already have an account?</Text>
 								<Link
-									to={'/signup'}
+									to={'/login'}
 									variant='link'
 									colorScheme='blue'>
-									Sign up
+									Login
 								</Link>
 							</HStack>
 						</Stack>
@@ -114,20 +101,21 @@ const Login = () => {
 								<Button
 									variant='primary'
 									onClick={onSubmit}>
-									Sign in
+									Sign Up
 								</Button>
-								<HStack>
-									<Divider />
-									<Text
-										fontSize='sm'
-										whiteSpace='nowrap'
-										color='muted'>
-										or continue with
-									</Text>
-									<Divider />
-								</HStack>
-								<OAuthButtonGroup />
 							</Stack>
+							{error && (
+								<Alert status='error'>
+									<AlertIcon />
+									Somthing went wrong
+								</Alert>
+							)}
+							{success && (
+								<Alert status='success'>
+									<AlertIcon />
+									SignUp sucessful
+								</Alert>
+							)}
 						</Stack>
 					</Box>
 				</Stack>
@@ -136,4 +124,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SignUp;
