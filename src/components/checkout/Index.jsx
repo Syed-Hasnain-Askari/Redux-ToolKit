@@ -20,6 +20,7 @@ export const App = () => {
 				lg: '7xl',
 			}}
 			mx='auto'
+			mt={100}
 			px={{
 				base: '4',
 				md: '8',
@@ -50,11 +51,7 @@ export const App = () => {
 					flex='2'>
 					{cart.length > 0 ? (
 						<Stack spacing='6'>
-							<Heading
-								fontSize='2xl'
-								fontWeight='extrabold'>
-								Shopping Cart (3 items)
-							</Heading>
+							<Heading fontSize='2xl'>Shopping Cart ({cart.length} items)</Heading>
 							{cart.map((item) => (
 								<CartItem
 									onClickDelete={() => onClickDelete(item.id)}

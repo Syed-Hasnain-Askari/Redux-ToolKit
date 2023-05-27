@@ -32,22 +32,29 @@ export default function Navbar() {
 		return total;
 	};
 	return (
-		<Box>
+		<Box
+			position={'fixed'}
+			w='100%'
+			right={0}
+			top={0}
+			zIndex={200}>
 			<Flex
-				bg={useColorModeValue('white', 'gray.800')}
-				color={useColorModeValue('gray.600', 'white')}
-				minH={'60px'}
-				py={{ base: 2 }}
-				px={{ base: 4 }}
+				minH={'100px'}
+				py={{ base: 5 }}
+				px={{ base: 3 }}
 				borderBottom={1}
 				borderStyle={'solid'}
-				borderColor={useColorModeValue('gray.200', 'gray.900')}
+				backgroundColor='rgba(255, 
+					255, 255, 0.8)'
+				backdropFilter='saturate(180%) blur(5px)'
 				align={'center'}>
 				<Flex
 					flex={{ base: 1, md: 'auto' }}
 					ml={{ base: -2 }}
 					display={{ base: 'flex', md: 'none' }}>
 					<IconButton
+						right={0}
+						top={0}
 						onClick={onToggle}
 						icon={
 							isOpen ? (
