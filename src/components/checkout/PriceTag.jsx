@@ -9,8 +9,8 @@ export function formatPrice(value, opts = {}) {
 	return formatter.format(value);
 }
 export const PriceTag = (props) => {
-	const { price, currency, salePrice, rootProps, priceProps, salePriceProps } = props;
-	console.log(currency);
+	const { price } = props;
+	console.log(price, 'price Tag');
 	return (
 		<HStack>
 			<Text>{price}</Text>

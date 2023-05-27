@@ -2,16 +2,22 @@ import React from 'react';
 import { Box, Flex, Heading, HStack, Link, Stack, useColorModeValue as mode, Image } from '@chakra-ui/react';
 import { CartItem } from './CartItem';
 import { CartOrderSummary } from './CartOrderSummary';
-import { removeItem } from '../../features/addToCart';
+import { removeItem, incrementQuantity, decrementQuantity } from '../../features/addToCart';
 import { useDispatch, useSelector } from 'react-redux';
 export const App = () => {
 	const cart = useSelector((state) => state.cart);
-	console.log(cart.length, 'This is cart item');
+	console.log(cart, 'This is cart item');
 	const dispatch = useDispatch();
 	const onClickDelete = (id) => {
 		dispatch(removeItem(id));
 		console.log(id);
 		console.log('DELETE');
+	};
+	const onIncrementQuantity = (id) => {
+		dispatch(incrementQuantity(id));
+	};
+	const onDecrementQuantity = (id) => {
+		dispatch(decrementQuantity(id));
 	};
 	return (
 		<Box
@@ -56,7 +62,9 @@ export const App = () => {
 								<CartItem
 									onClickDelete={() => onClickDelete(item.id)}
 									key={item.id}
-									{...item}
+									onIncrementQuantity={() => onIncrementQuantity(item.id)}
+									onDecrementQuantity={() => onDecrementQuantity(item.id)}
+									products={item}
 								/>
 							))}
 						</Stack>

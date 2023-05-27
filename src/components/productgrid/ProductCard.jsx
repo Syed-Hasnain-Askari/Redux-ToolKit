@@ -5,18 +5,41 @@ import {
 	Button,
 	HStack,
 	Image,
-	Link,
 	Skeleton,
 	Stack,
 	Text,
+	useToast,
 	useColorModeValue,
+	Flex,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { Rating } from './Rating';
 import { FavouriteButton } from './FavouriteButton';
-
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../features/addToCart';
 export const ProductCard = (props) => {
+	const dispatch = useDispatch();
+	const toast = useToast();
+	const handleAddToCart = (id, name, description, image, price) => {
+		dispatch(
+			addToCart({
+				id,
+				name,
+				image,
+				description,
+				price,
+			})
+		);
+		toast({
+			title: 'Product Add',
+			description: 'Your product has been added',
+			status: 'info',
+			duration: 5000,
+			isClosable: true,
+		});
+	};
 	const { product, rootProps } = props;
-	const { name, image, price, salePrice, rating } = product;
+	const { id, name, image, price, description, rating } = product;
 	return (
 		<Stack
 			spacing={{
@@ -24,35 +47,56 @@ export const ProductCard = (props) => {
 				md: '5',
 			}}
 			{...rootProps}>
-			<Box position='relative'>
-				<AspectRatio ratio={4 / 3}>
-					<Image
-						src={image}
-						alt={name}
-						draggable='false'
-						fallback={<Skeleton />}
-						borderRadius={{
-							base: 'md',
-							md: 'xl',
-						}}
+			<Link to={'/productDetail'}>
+				<Box position='relative'>
+					<AspectRatio ratio={4 / 3}>
+						<Image
+							src={image}
+							alt={name}
+							draggable='false'
+							fallback={<Skeleton />}
+							borderRadius={{
+								base: 'md',
+								md: 'xl',
+							}}
+						/>
+					</AspectRatio>
+					<FavouriteButton
+						position='absolute'
+						top='4'
+						right='4'
+						aria-label={`Add ${name} to your favourites`}
 					/>
-				</AspectRatio>
-				<FavouriteButton
-					position='absolute'
-					top='4'
-					right='4'
-					aria-label={`Add ${name} to your favourites`}
-				/>
-			</Box>
+				</Box>
+			</Link>
 			<Stack>
-				<Stack spacing='1'>
-					<Text
-						fontWeight='medium'
-						color={useColorModeValue('gray.700', 'gray.400')}>
-						{name}
-					</Text>
-					<Text>{price}</Text>
-				</Stack>
+				<Flex spacing='1'>
+					<Flex
+						flex='1'
+						gap='4'
+						alignItems={'center'}
+						justifyContent={'center'}>
+						<Stack mt={5}>
+							<Heading
+								size='sm'
+								textAlign={'left'}
+								fontSize='lg'
+								lineHeight='tall'>
+								{name}
+							</Heading>
+							<Text
+								fontSize={'sm'}
+								textAlign={'left'}>
+								{description}
+							</Text>
+						</Stack>
+					</Flex>
+					<Heading
+						fontSize={'sm'}
+						mt={5}>
+						{price}
+					</Heading>
+				</Flex>
 				<HStack>
 					<Rating
 						defaultValue={rating}
@@ -68,15 +112,10 @@ export const ProductCard = (props) => {
 			<Stack align='center'>
 				<Button
 					colorScheme='blue'
-					width='full'>
+					width='full'
+					onClick={() => handleAddToCart(id, name, description, image, price)}>
 					Add to cart
 				</Button>
-				<Link
-					textDecoration='underline'
-					fontWeight='medium'
-					color={useColorModeValue('gray.600', 'gray.400')}>
-					Quick shop
-				</Link>
 			</Stack>
 		</Stack>
 	);

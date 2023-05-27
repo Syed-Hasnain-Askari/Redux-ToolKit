@@ -1,4 +1,5 @@
-import { CloseButton, Flex, Link, Select, useColorModeValue } from '@chakra-ui/react';
+import { CloseButton, Flex, Link, Select, useColorModeValue, ButtonGroup, Button, IconButton } from '@chakra-ui/react';
+import { PhoneIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { PriceTag } from './PriceTag';
 import { CartProductMeta } from './CartProductMeta';
 const QuantitySelect = (props) => {
@@ -17,7 +18,8 @@ const QuantitySelect = (props) => {
 };
 
 export const CartItem = (props) => {
-	const { isGiftWrapping, name, description, quantity, image, currency, price, onChangeQuantity, onClickDelete } = props;
+	const { name, description, quantity, image, currency, price } = props.products;
+	console.log(price);
 	return (
 		<Flex
 			direction={{
@@ -30,7 +32,6 @@ export const CartItem = (props) => {
 				name={name}
 				description={description}
 				image={image}
-				isGiftWrapping={isGiftWrapping}
 			/>
 
 			{/* Desktop */}
@@ -41,19 +42,27 @@ export const CartItem = (props) => {
 					base: 'none',
 					md: 'flex',
 				}}>
-				<QuantitySelect
-					value={quantity}
-					onChange={(e) => {
-						onChangeQuantity?.(+e.currentTarget.value);
-					}}
-				/>
-				<PriceTag
-					price={price}
-					currency={currency}
-				/>
+				<ButtonGroup
+					size='sm'
+					isAttached
+					ml={5}
+					variant='outline'>
+					<IconButton
+						aria-label='Add to friends'
+						icon={<MinusIcon />}
+						onClick={props.onDecrementQuantity}
+					/>
+					<Button>{quantity}</Button>
+					<IconButton
+						aria-label='Add to friends'
+						icon={<AddIcon />}
+						onClick={props.onIncrementQuantity}
+					/>
+				</ButtonGroup>
+				<PriceTag price={price} />
 				<CloseButton
 					aria-label={`Delete ${name} from cart`}
-					onClick={onClickDelete}
+					onClick={() => props.onClickDelete()}
 				/>
 			</Flex>
 
@@ -75,7 +84,7 @@ export const CartItem = (props) => {
 				<QuantitySelect
 					value={quantity}
 					onChange={(e) => {
-						onChangeQuantity?.(+e.currentTarget.value);
+						onIncrementQuantity?.(+e.currentTarget.value);
 					}}
 				/>
 				<PriceTag
