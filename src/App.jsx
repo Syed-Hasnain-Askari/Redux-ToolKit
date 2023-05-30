@@ -5,6 +5,7 @@ import Error from './page/Error';
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Index from './page/Index';
 import ProductDetail from './page/DetailProduct';
+import AddToCart from './page/AddToCart';
 import Checkout from './page/Checkout';
 
 export const router = createBrowserRouter(
@@ -25,6 +26,10 @@ export const router = createBrowserRouter(
 			<Route
 				path='/productDetail'
 				element={<ProductDetail />}
+			/>
+			<Route
+				path='/addtocart'
+				element={<AddToCart />}
 			/>
 			<Route
 				path='/checkout'

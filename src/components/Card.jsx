@@ -2,7 +2,7 @@ import {
 	Box,
 	Center,
 	Card,
-	CardHeader,
+	VStack,
 	ButtonGroup,
 	Button,
 	Divider,
@@ -121,7 +121,9 @@ export default function ProductCard() {
 										gap='4'
 										alignItems={'center'}
 										justifyContent={'center'}>
-										<Stack mt={5}>
+										<VStack
+											spacing={1}
+											alignItems={'flex-start'}>
 											<Heading
 												size='sm'
 												textAlign={'left'}
@@ -134,13 +136,15 @@ export default function ProductCard() {
 												textAlign={'left'}>
 												{description}
 											</Text>
-										</Stack>
+										</VStack>
 									</Flex>
-									<Heading
-										fontSize={'sm'}
-										mt={5}>
-										{price}
-									</Heading>
+									<Flex>
+										<Heading
+											fontSize={'sm'}
+											mt={2}>
+											{price}
+										</Heading>
+									</Flex>
 								</Flex>
 							</CardBody>
 							<CardFooter>

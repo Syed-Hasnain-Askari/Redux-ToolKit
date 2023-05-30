@@ -6,9 +6,8 @@ import { Container } from '@chakra-ui/react';
 function Layout({ children }) {
 	return (
 		<Container
-			maxWidth='container.lg'
-			padding={0}
-			>
+			maxWidth='container.xl'
+			padding={0}>
 			<Navbar />
 			{children}
 			<Footer />

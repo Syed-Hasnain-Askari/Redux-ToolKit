@@ -11,6 +11,7 @@ import {
 	useToast,
 	useColorModeValue,
 	Flex,
+	VStack,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Rating } from './Rating';
@@ -70,13 +71,15 @@ export const ProductCard = (props) => {
 				</Box>
 			</Link>
 			<Stack>
-				<Flex spacing='1'>
+				<Flex>
 					<Flex
 						flex='1'
 						gap='4'
 						alignItems={'center'}
 						justifyContent={'center'}>
-						<Stack mt={5}>
+						<VStack
+							spacing={3}
+							alignItems={'flex-start'}>
 							<Heading
 								size='sm'
 								textAlign={'left'}
@@ -89,13 +92,15 @@ export const ProductCard = (props) => {
 								textAlign={'left'}>
 								{description}
 							</Text>
-						</Stack>
+						</VStack>
 					</Flex>
-					<Heading
-						fontSize={'sm'}
-						mt={5}>
-						{price}
-					</Heading>
+					<Flex>
+						<Heading
+							fontSize={'sm'}
+							mt={2}>
+							{price}
+						</Heading>
+					</Flex>
 				</Flex>
 				<HStack>
 					<Rating

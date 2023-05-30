@@ -1,6 +1,7 @@
 import { Button, Flex, Heading, Link, Stack, Text, useColorModeValue as mode } from '@chakra-ui/react';
 import { FaArrowRight } from 'react-icons/fa';
 import { formatPrice } from './PriceTag';
+import { Navigate, useNavigate } from 'react-router-dom';
 const OrderSummaryItem = (props) => {
 	const { label, value, children } = props;
 	return (
@@ -18,6 +19,11 @@ const OrderSummaryItem = (props) => {
 };
 
 export const CartOrderSummary = () => {
+	const navigate = useNavigate();
+
+	const OnClick = () => {
+		navigate('/checkout');
+	};
 	return (
 		<Stack
 			spacing='8'
@@ -63,6 +69,7 @@ export const CartOrderSummary = () => {
 				colorScheme='blue'
 				size='lg'
 				fontSize='md'
+				onClick={OnClick}
 				rightIcon={<FaArrowRight />}>
 				Checkout
 			</Button>

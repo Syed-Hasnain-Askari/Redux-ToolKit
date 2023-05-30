@@ -105,7 +105,7 @@ export default function Navbar() {
 						</Text>
 					</Link>
 					<Stack position={'relative'}>
-						<Link to={'/checkout'}>
+						<Link to={'/addtocart'}>
 							<AiOutlineShoppingCart size={20} />
 							<Badge
 								colorScheme='green'
