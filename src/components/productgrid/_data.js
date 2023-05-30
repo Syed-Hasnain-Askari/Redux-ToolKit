@@ -1,7 +1,7 @@
 export const products = [
 	{
 		id: 1,
-		quantity: 0,
+
 		name: 'Product 1',
 		description: 'High-quality wireless headphones',
 		price: '$149.99',
@@ -10,7 +10,7 @@ export const products = [
 	},
 	{
 		id: 2,
-		quantity: 0,
+
 		name: 'Product 2',
 		description: 'Over-ear headphones with exceptional audio clarity',
 		price: '$99.99',
@@ -19,7 +19,7 @@ export const products = [
 	},
 	{
 		id: 3,
-		quantity: 0,
+
 		name: 'Product 3',
 		description: 'Sports headphones with sweat resistance and secure fit',
 		price: '$79.99',
@@ -28,7 +28,7 @@ export const products = [
 	},
 	{
 		id: 4,
-		quantity: 0,
+
 		name: 'Product 4',
 		description: 'Wireless earbuds with long battery life and compact design',
 		price: '$129.99',

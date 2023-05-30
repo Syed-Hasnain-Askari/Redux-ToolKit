@@ -49,12 +49,25 @@ export const CartItem = (props) => {
 					variant='outline'>
 					<IconButton
 						aria-label='Add to friends'
+						height={10}
+						width={10}
+						colorScheme='blue'
+						variant='outline'
 						icon={<MinusIcon />}
 						onClick={props.onDecrementQuantity}
 					/>
-					<Button>{quantity}</Button>
+					<Button
+						height={10}
+						width={20}
+						colorScheme='blue'>
+						{quantity}
+					</Button>
 					<IconButton
+						height={10}
+						width={10}
 						aria-label='Add to friends'
+						colorScheme='blue'
+						variant='outline'
 						icon={<AddIcon />}
 						onClick={props.onIncrementQuantity}
 					/>

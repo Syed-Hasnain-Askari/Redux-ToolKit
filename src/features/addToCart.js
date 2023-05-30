@@ -9,6 +9,7 @@ const cartSlice = createSlice({
 			const { id, name, image, description, price } = action.payload;
 			const itemInCart = state.find((item) => item.id === id);
 			if (itemInCart) {
+				console.log(itemInCart, 'this is item cart');
 				itemInCart.quantity++;
 			} else {
 				state.push({ id, name, image, description, price, quantity: 1 });

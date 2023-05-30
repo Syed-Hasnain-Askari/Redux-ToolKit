@@ -12,6 +12,7 @@ import {
 	useColorModeValue,
 	useBreakpointValue,
 	useDisclosure,
+	Container,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
@@ -32,22 +33,20 @@ export default function Navbar() {
 		return total;
 	};
 	return (
-		<Box
-			position={'fixed'}
-			w='100%'
+		<Container
+			maxWidth='100%'
 			right={0}
+			left={0}
 			top={0}
+			padding={0}
+			position={'fixed'}
 			zIndex={200}>
 			<Flex
 				minH={'100px'}
-				py={{ base: 5 }}
-				px={{ base: 3 }}
-				borderBottom={1}
-				borderStyle={'solid'}
-				backgroundColor='rgba(255, 
-					255, 255, 0.8)'
-				backdropFilter='saturate(180%) blur(5px)'
-				align={'center'}>
+				backgroundColor={'green.500'}
+				align={'center'}
+				paddingLeft={{ base: 5, md: 100 }}
+				paddingRight={{ base: 5, md: 100 }}>
 				<Flex
 					flex={{ base: 1, md: 'auto' }}
 					ml={{ base: -2 }}
@@ -135,7 +134,7 @@ export default function Navbar() {
 				animateOpacity>
 				<MobileNav />
 			</Collapse>
-		</Box>
+		</Container>
 	);
 }
 
